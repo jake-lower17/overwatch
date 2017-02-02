@@ -9,6 +9,6 @@ $(document).foundation();
 require('style!css!sass!applicationsStyles');
 
 ReactDOM.render(
-  <p>Boilerplate 3</p>,
+  <p>Overwatch APP</p>,
   document.getElementById('app')
 );
