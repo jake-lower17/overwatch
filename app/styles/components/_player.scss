@@ -4,6 +4,7 @@
   align-items: center;
   padding: 1rem;
   transition: background .3s ease;
+  border: 1px solid #eee;
 
 
   p, input {
@@ -21,8 +22,8 @@
 
 .psn_holder {
   border-right: 1px solid #93291b;
-  padding-right: 5px;
-  margin-right: 5px;
+  padding-right: 10px;
+  margin-right: 10px;
   background-color: f0f;
 }
 
@@ -31,6 +32,15 @@
   font-size: 1.1rem;
 }
 
+.psn_img {
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border: 1px solid $grey;
+}
+.player_right {
+  margin-left: auto;
+}
 .player-completed {
   p, .todo-subtext {
     color: $light-color;

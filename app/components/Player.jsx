@@ -4,7 +4,7 @@ var moment = require('moment');
 
 var Player = React.createClass({
   render: function () {
-    var { id, score, time } = this.props;
+    var { id, score, time, avatar } = this.props;
     var formatedTime = moment.unix(time).format('MMM Do YYYY h:mm a')
     return (
       <div className="player">
@@ -15,6 +15,9 @@ var Player = React.createClass({
         <div>
           <p>Competitive</p>
           <p>{score}</p>
+        </div>
+        <div className="player_right">
+          <img className="psn_img" src={avatar}/>
         </div>
       </div>
     );

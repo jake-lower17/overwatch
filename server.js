@@ -27,7 +27,7 @@ function getPlayerData(psn) {
       throw new Error(res.data.error);
     }else {
       //return res.data.main.temp;
-      return [psn, res.data.data.competitive.rank];
+      return [psn, res.data.data.competitive.rank, res.data.data.avatar];
     }
   },
 
@@ -62,6 +62,7 @@ function callData() {
 
       PlayerRef.update({
         score: parseInt(score[1]),
+        avatar: score[2],
         time: moment().unix(),
       });
       return score;
