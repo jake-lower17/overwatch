@@ -12,13 +12,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var firebaseRef = firebase.database().ref();
-firebaseRef.set({
-  app: {
-    name: 'Overwatch App',
-    version: '1.0.0',
-    Author: 'Jacob Lower',
-  },
-});
 var competitiveRef = firebaseRef.child('competitive');
 function getPlayerData(psn) {
   var requestUrl = `https://api.lootbox.eu/psn/us/${psn}/profile`;
@@ -27,7 +20,7 @@ function getPlayerData(psn) {
       throw new Error(res.data.error);
     }else {
       //return res.data.main.temp;
-      return [psn, res.data.data.competitive.rank, res.data.data.avatar];
+      return [psn, res.data.data.competitive.rank, res.data.data.avatar, res.data.data.level, res.data.data.games.competitive.wins, res.data.data.games.competitive.lost];
     }
   },
 
@@ -63,6 +56,9 @@ function callData() {
       PlayerRef.update({
         score: parseInt(score[1]),
         avatar: score[2],
+        level: parseInt(score[3]),
+        won: parseInt(score[4]),
+        lost: parseInt(score[5]),
         time: moment().unix(),
       });
       return score;

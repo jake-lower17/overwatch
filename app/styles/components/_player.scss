@@ -22,16 +22,25 @@
 
 .psn_holder {
   border-right: 1px solid #93291b;
-  padding-right: 10px;
-  margin-right: 10px;
-  background-color: f0f;
+  padding-right: 15px;
+  margin-right: 15px;
+}
+
+.psn_holder2 {
+  border-right: 2px solid $light-grey-border;
+  padding-right: 15px;
+  margin-right: 15px;
 }
 
 .psn {
   color: #333333;
   font-size: 1.1rem;
 }
-
+.stat_header {
+  color: #93291b;
+  font-size: 1.1rem;
+  text-align: center;
+}
 .psn_img {
   padding: 0;
   width: 50px;
