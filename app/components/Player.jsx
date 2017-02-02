@@ -7,10 +7,15 @@ var Player = React.createClass({
     var { id, score, time } = this.props;
     var formatedTime = moment.unix(time).format('MMM Do YYYY h:mm a')
     return (
-      <div>
-        <h3>{id}</h3>
-        <p>{score}</p>
-        <p>{formatedTime}</p>
+      <div className="player">
+        <div className="psn_holder">
+          <p className="psn">{id}</p>
+          <p className="player__subtext">{formatedTime}</p>
+        </div>
+        <div>
+          <p>Competitive</p>
+          <p>{score}</p>
+        </div>
       </div>
     );
   },

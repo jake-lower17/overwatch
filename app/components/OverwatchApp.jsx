@@ -5,7 +5,7 @@ var OverwatchApp = React.createClass({
   render: function () {
     return (
       <div>
-        <h1 className="page-title">Overwatch APP.jsx</h1>
+        <h1>Team Tracker</h1>
         <div className="row">
           <div className="column small-centered small-12 medium-12 large-6">
             <div className="container">

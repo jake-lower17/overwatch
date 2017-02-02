@@ -1,0 +1,39 @@
+.player {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  padding: 1rem;
+  transition: background .3s ease;
+
+
+  p, input {
+    margin: 0;
+  }
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.player__subtext {
+  color: #999;
+}
+
+.psn_holder {
+  border-right: 1px solid #93291b;
+  padding-right: 5px;
+  margin-right: 5px;
+  background-color: f0f;
+}
+
+.psn {
+  color: #333333;
+  font-size: 1.1rem;
+}
+
+.player-completed {
+  p, .todo-subtext {
+    color: $light-color;
+    text-decoration: line-through;
+  }
+}
