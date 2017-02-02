@@ -1,5 +1,5 @@
 var React = require('react');
-var PlayerList = require('PlayerList');
+import PlayerList from 'PlayerList';
 
 var OverwatchApp = React.createClass({
   render: function () {

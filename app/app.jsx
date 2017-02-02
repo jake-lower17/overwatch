@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var { Provider } = require('react-redux');
 var { Route, Router, IndexRoute, hashHistory } = require('react-router');
 
 var OverwatchApp = require('OverwatchApp');
@@ -16,6 +17,8 @@ require('style!css!sass!applicationsStyles');
 store.dispatch(actions.startAddPlayers());
 
 ReactDOM.render(
-    <OverwatchApp/>,
+  <Provider store={store}>
+    <OverwatchApp/>
+  </Provider>,
   document.getElementById('app')
 );

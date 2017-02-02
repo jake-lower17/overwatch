@@ -1,14 +1,37 @@
 var React = require('react');
-var Player = require('Player');
+import Player from 'Player';
+var { connect } = require('react-redux');
+var Filter = require('Filter');
 
 var PlayerList = React.createClass({
   render: function () {
+    var { players } = this.props;
+
+    var renderPlayers = () => {
+      if (players.length === 0) {
+        return (
+          <p className="container__message">No Data</p>
+        );
+      }
+
+      return Filter.filterPlayers(players).map((player) => {
+        return (
+          <Player key={player.id} {...player} />
+        );
+      });
+    };
+
     return (
       <div>
-        <Player/>
+        {renderPlayers()}
       </div>
     );
+
   },
 });
 
-module.exports = PlayerList;
+export default connect(
+  (state) => {
+    return state;
+  }
+)(PlayerList);

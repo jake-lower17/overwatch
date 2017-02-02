@@ -61,7 +61,7 @@ function callData() {
       };
 
       PlayerRef.update({
-        score: score[1],
+        score: parseInt(score[1]),
         time: moment().unix(),
       });
       return score;
