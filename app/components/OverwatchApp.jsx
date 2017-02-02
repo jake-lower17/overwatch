@@ -7,7 +7,7 @@ var OverwatchApp = React.createClass({
       <div>
         <h1>Team Tracker</h1>
         <div className="row">
-          <div className="column small-centered small-12 medium-12 large-6">
+          <div className="column small-centered small-12 medium-12 large-8">
             <div className="container">
               <PlayerList/>
             </div>
