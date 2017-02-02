@@ -56,6 +56,10 @@ function callData() {
     score = getPlayerData(playerList[i]).then(function (score) {
       PlayerRef = competitiveRef.child(score[0]);
       console.log(score[0], ' ', score[1]);
+      if (!score[1]) {
+        score[1] = 0;
+      };
+
       PlayerRef.update({
         score: score[1],
         time: moment().unix(),
