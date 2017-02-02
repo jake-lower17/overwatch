@@ -5,7 +5,7 @@ var moment = require('moment');
 var Player = React.createClass({
   render: function () {
     var { id, score, time, avatar, level, won, lost } = this.props;
-    var formatedTime = moment.unix(time).format('MMM Do h:mm a')
+    var formatedTime = moment.unix(time).format('MMM Do h:mm a');
     return (
       <div className="player">
         <div className="psn_holder">
