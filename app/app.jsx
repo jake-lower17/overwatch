@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var { Provider } = require('react-redux');
 var { Route, Router, IndexRoute, hashHistory } = require('react-router');
+import firebase, { firebaseRef } from 'app/firebase/';
 
 var OverwatchApp = require('OverwatchApp');
 
@@ -15,6 +16,10 @@ $(document).foundation();
 require('style!css!sass!applicationsStyles');
 
 store.dispatch(actions.startAddPlayers());
+
+firebaseRef.on('value', (snapshot) => {
+  store.dispatch(actions.startAddPlayers());
+});
 
 ReactDOM.render(
   <Provider store={store}>
