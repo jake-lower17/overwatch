@@ -5,7 +5,8 @@ var moment = require('moment');
 var Player = React.createClass({
   render: function () {
     var { id, score, time, avatar, level, won, lost } = this.props;
-    var formatedTime = moment.unix(time).format('MMM Do h:mm a');
+    var diffPercent = ((won / (lost + won)) * 100).toFixed(2);
+    var formatedTime = moment.unix(time).format('MM/DD/YY h:mm a');
     return (
       <div className="player">
         <div className="psn_holder">
@@ -27,6 +28,10 @@ var Player = React.createClass({
         <div className="psn_holder2">
           <p className="psn">Lost</p>
           <p className="stat_header">{lost}</p>
+        </div>
+        <div className="psn_holder2">
+          <p className="psn">Win %</p>
+          <p className="stat_header">{diffPercent}</p>
         </div>
         <div className="player_right">
           <img className="psn_img" src={avatar}/>
