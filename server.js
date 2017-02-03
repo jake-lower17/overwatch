@@ -111,4 +111,4 @@ function callData() {
 
 };
 
-setInterval(callData, 900000);
+setInterval(callData, 300000);
