@@ -1,6 +1,5 @@
 .player {
   display: flex;
-  cursor: pointer;
   align-items: center;
   padding: 1rem;
   transition: background .3s ease;
@@ -10,9 +9,11 @@
   p, input {
     margin: 0;
   }
+}
 
+.datacell {
   &:hover {
-    background: #dd9992;
+    cursor: pointer;
   }
 }
 

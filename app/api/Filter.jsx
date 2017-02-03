@@ -44,6 +44,62 @@ module.exports = {
         }
       }
 
+      if (type === 'kills') {
+        if (a.kills < b.kills) {
+          return 1;
+        } else if (a.kills > b.kills) {
+          return -1;
+        }else {
+          return 0;
+        }
+      }
+
+      if (type === 'solo') {
+        if (a.solo < b.solo) {
+          return 1;
+        } else if (a.solo > b.solo) {
+          return -1;
+        }else {
+          return 0;
+        }
+      }
+
+      if (type === 'healing') {
+        if (a.healing < b.healing) {
+          return 1;
+        } else if (a.healing > b.healing) {
+          return -1;
+        }else {
+          return 0;
+        }
+      }
+
+      if (type === 'damage') {
+        if (a.damage < b.damage) {
+          return 1;
+        } else if (a.damage > b.damage) {
+          return -1;
+        }else {
+          return 0;
+        }
+      }
+
+      if (type === 'fire') {
+        var a = a.fire.split(':');
+        var b = b.fire.split(':');
+
+        var aTime = a[0] * 60 + a[1];
+        var bTime = b[0] * 60 + b[1];
+
+        if (aTime < bTime) {
+          return 1;
+        } else if (aTime > bTime) {
+          return -1;
+        }else {
+          return 0;
+        }
+      }
+
       if (type === 'winPercent') {
         var diffPercentA = ((a.won / (a.lost + a.won)) * 100).toFixed(2);
         var diffPercentB = ((b.won / (b.lost + b.won)) * 100).toFixed(2);
