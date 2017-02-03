@@ -10,3 +10,13 @@ export var playersReducer = (state = [], action) => {
       return state;
   }
 };
+
+export var sortReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SORT_PLAYERS':
+      console.log('Hello World');
+      return action.sort;
+    default:
+      return state;
+  };
+};

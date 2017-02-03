@@ -8,6 +8,13 @@ export var addPlayers = (player) => {
   };
 };
 
+export var setSortPlayers = (sort) => {
+  return {
+    type: 'SORT_PLAYERS',
+    sort: sort,
+  };
+};
+
 export var startAddPlayers = () => {
   return (dispatch, getState) => {
     var playerRef = firebaseRef.child('competitive');

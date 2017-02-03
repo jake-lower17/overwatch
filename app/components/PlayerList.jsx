@@ -5,7 +5,7 @@ var Filter = require('Filter');
 
 var PlayerList = React.createClass({
   render: function () {
-    var { players } = this.props;
+    var { players, sort} = this.props;
 
     var renderPlayers = () => {
       if (players.length === 0) {
@@ -14,7 +14,7 @@ var PlayerList = React.createClass({
         );
       }
 
-      return Filter.filterPlayers(players).map((player) => {
+      return Filter.filterPlayers(players, sort).map((player) => {
         return (
           <Player key={player.id} {...player} />
         );

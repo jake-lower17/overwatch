@@ -12,7 +12,7 @@
   }
 
   &:hover {
-    background: #f0f0f0;
+    background: #dd9992;
   }
 }
 
@@ -20,25 +20,13 @@
   color: #999;
 }
 
-.psn_holder {
-  border-right: 1px solid #93291b;
-  padding-right: 15px;
-  margin-right: 17px;
-}
-
-.psn_holder2 {
-  border-right: 2px solid $light-grey-border;
-  padding-right: 15px;
-  margin-right: 17px;
-}
-
 .psn {
   color: #333333;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .stat_header {
   color: #93291b;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
 }
 .psn_img {
@@ -49,6 +37,25 @@
 }
 .player_right {
   margin-left: auto;
+}
+
+.psn_holder {
+  border-right: 1px solid #93291b;
+  padding-right: 15px;
+  margin-right: 17px;
+  width: 20%;
+}
+
+.psn_holder2 {
+  border-right: 2px solid $light-grey-border;
+  text-align: center;
+  padding-right: 15px;
+  margin-right: 17px;
+  width: 15%;
+
+  &:hover {
+    color: #000;
+  }
 }
 .player-completed {
   p, .todo-subtext {
