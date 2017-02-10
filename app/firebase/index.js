@@ -4,11 +4,11 @@ try {
 
   // Initialize Firebase
   var config = {
-    apiKey: 'AIzaSyBYmSp8p_ZwRDvCSk-C3DUHwuspQn8ITGc',
-    authDomain: 'ow-app-3f4bb.firebaseapp.com',
-    databaseURL: 'https://ow-app-3f4bb.firebaseio.com',
-    storageBucket: 'ow-app-3f4bb.appspot.com',
-    messagingSenderId: '96962695775',
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGE_SENDER
   };
   firebase.initializeApp(config);
   var firebaseRef = firebase.database().ref();

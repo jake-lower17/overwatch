@@ -2,16 +2,38 @@ var express = require('express');
 var firebase = require('firebase');
 var axios = require('axios');
 var moment = require('moment');
+var path = require('path');
+var envFile = require('node-env-file');
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+try {
+  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'));
+} catch (e) {
+
+}
 
 var config = {
-  apiKey: 'AIzaSyBYmSp8p_ZwRDvCSk-C3DUHwuspQn8ITGc',
-  authDomain: 'ow-app-3f4bb.firebaseapp.com',
-  databaseURL: 'https://ow-app-3f4bb.firebaseio.com',
-  storageBucket: 'ow-app-3f4bb.appspot.com',
-  messagingSenderId: '96962695775',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  databaseURL: process.env.DATABASE_URL,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGE_SENDER,
 };
+console.log(config);
 firebase.initializeApp(config);
 var firebaseRef = firebase.database().ref();
+// firebaseRef.set({
+//   app: {
+//     name: 'Todo App',
+//     version: '1.0.0',
+//   },
+//   isRunning: true,
+//   user: {
+//     name: 'Jake',
+//     age: 27,
+//   },
+// });
 var competitiveRef = firebaseRef.child('competitive');
 
 //Get basic stats
