@@ -12,7 +12,7 @@ try {
 } catch (e) {
 
 }
-console.log(process.env.MESSAGE_SENDER);
+console.log(process.env.NODE_ENV);
 var config = {
   apiKey: 'AIzaSyBYmSp8p_ZwRDvCSk-C3DUHwuspQn8ITGc',
   authDomain: 'ow-app-3f4bb.firebaseapp.com',
