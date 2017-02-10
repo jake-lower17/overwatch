@@ -1,8 +1,8 @@
-var React = require('react');
+import React from 'react';
 import PlayerList from 'PlayerList';
 
-var OverwatchApp = React.createClass({
-  render: function () {
+export class OverwatchApp extends React.Component {
+  render () {
     return (
       <div>
         <h1>Team Tracker</h1>
@@ -15,7 +15,7 @@ var OverwatchApp = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+};
 
 module.exports = OverwatchApp;

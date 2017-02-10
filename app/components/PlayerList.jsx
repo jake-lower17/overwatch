@@ -1,10 +1,10 @@
-var React = require('react');
+import React from 'react';
 import Player from 'Player';
-var { connect } = require('react-redux');
-var Filter = require('Filter');
+import { connect } from 'react-redux';
+import Filter from 'Filter';
 
-var PlayerList = React.createClass({
-  render: function () {
+export class PlayerList extends React.Component {
+  render () {
     var { players, sort} = this.props;
 
     var renderPlayers = () => {
@@ -27,8 +27,8 @@ var PlayerList = React.createClass({
       </div>
     );
 
-  },
-});
+  }
+};
 
 export default connect(
   (state) => {

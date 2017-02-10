@@ -1,10 +1,10 @@
-var React = require('react');
-var { connect } = require('react-redux');
-var moment = require('moment');
+import React from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 var actions = require('actions');
 
-var Player = React.createClass({
-  render: function () {
+export class Player extends React.Component {
+  render () {
     var { id, score, time, avatar, level, won, lost, healing, dispatch, damage, kills, solo, fire } = this.props;
 
     var diffPercent = ((won / (lost + won)) * 100).toFixed(2);
@@ -108,7 +108,7 @@ var Player = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+};
 
 export default connect()(Player);

@@ -1,13 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var { Provider } = require('react-redux');
-var { Route, Router, IndexRoute, hashHistory } = require('react-router');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import firebase, { firebaseRef } from 'app/firebase/';
 
-var OverwatchApp = require('OverwatchApp');
-
-var store = require('configureStore').configure();
+import OverwatchApp from 'OverwatchApp';
 var actions = require('actions');
+var store = require('configureStore').configure();
 
 // Load foundation
 $(document).foundation();
