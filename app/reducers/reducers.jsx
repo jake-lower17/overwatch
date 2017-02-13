@@ -11,6 +11,17 @@ export var playersReducer = (state = [], action) => {
   }
 };
 
+export var notesReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_NOTES':
+      return [
+        ...action.note,
+      ];
+    default:
+      return state;
+  }
+};
+
 export var sortReducer = (state = [], action) => {
   switch (action.type) {
     case 'SORT_PLAYERS':

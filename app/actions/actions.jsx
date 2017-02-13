@@ -8,6 +8,13 @@ export var addPlayers = (player) => {
   };
 };
 
+export var addNotes = (note) => {
+  return {
+    type: 'ADD_NOTES',
+    note: note,
+  };
+};
+
 export var setSortPlayers = (sort) => {
   return {
     type: 'SORT_PLAYERS',
@@ -31,6 +38,26 @@ export var startAddPlayers = () => {
 
       dispatch(addPlayers(parsedPlayers));
       console.log('got database ', player);
+    }, (e) => {
+      console.log('unable to fetch data', e);
+    });
+  };
+};
+
+export var startAddNotes = () => {
+  return (dispatch, getState) => {
+    var notesRef = firebaseRef.child('notes');
+    return notesRef.once('value').then((snapshot) => {
+      var notes = snapshot.val() || {};
+      var parsedNotes = [];
+      Object.keys(notes).forEach((note) => {
+        parsedNotes.push({
+          id: note,
+          ...notes[note],
+        });
+      });
+      dispatch(addNotes(parsedNotes));
+      console.log('got database ', notes);
     }, (e) => {
       console.log('unable to fetch data', e);
     });

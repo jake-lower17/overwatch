@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import firebase, { firebaseRef } from 'app/firebase/';
+import router from 'app/router/';
 
 import OverwatchApp from 'OverwatchApp';
 var actions = require('actions');
@@ -15,6 +16,7 @@ $(document).foundation();
 require('style!css!sass!applicationsStyles');
 
 store.dispatch(actions.startAddPlayers());
+store.dispatch(actions.startAddNotes());
 
 firebaseRef.on('value', (snapshot) => {
   store.dispatch(actions.startAddPlayers());
@@ -22,7 +24,7 @@ firebaseRef.on('value', (snapshot) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <OverwatchApp/>
+    {router}
   </Provider>,
   document.getElementById('app')
 );

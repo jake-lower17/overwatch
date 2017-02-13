@@ -34,6 +34,7 @@ var firebaseRef = firebase.database().ref();
 //   },
 // });
 var competitiveRef = firebaseRef.child('competitive');
+var notesRef = firebaseRef.child('notes');
 
 //Get basic stats
 function getPlayerData(psn) {
@@ -48,7 +49,7 @@ function getPlayerData(psn) {
   },
 
   function (res) {
-    throw new Error('Unable to score.');
+    throw new Error('Data error player data.');
   });
 
 };
@@ -66,7 +67,25 @@ function getPlayerDataAdvanced(psn) {
   },
 
   function (res) {
-    throw new Error('Unable to score.');
+    throw new Error('Data error player data advanced.');
+  });
+
+};
+
+//Patch notes
+function getPatchNotes() {
+  var requestUrl = `https://api.lootbox.eu/patch_notes`;
+  return axios.get(requestUrl).then(function (res) {
+    if (res.data.error) {
+      throw new Error(res.data.error);
+    }else {
+      //return res.data.main.temp;
+      return res.data.patchNotes;
+    }
+  },
+
+  function (res) {
+    throw new Error('Data error patch notes.');
   });
 
 };
@@ -80,6 +99,7 @@ app.listen(port, function () {
   console.log('Express server is up on port ' + port);
 });
 
+callNotes();
 callData();
 
 //Players to search
@@ -129,7 +149,19 @@ function callData() {
       console.log(e);
     });
   }
-
 };
 
+function callNotes() {
+  notesRef = firebaseRef.child('notes');
+  score = getPatchNotes().then(function (notes) {
+    //console.log(notes);
+
+    notesRef.set(notes);
+    return notes;
+  }, function (e) {
+    console.log(e);
+  });
+}
+
 setInterval(callData, 300000);
+setInterval(callNotes, 3600000);
