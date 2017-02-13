@@ -88,9 +88,8 @@ module.exports = {
         var a = a.fire.split(':');
         var b = b.fire.split(':');
 
-        var aTime = a[0] * 60 + a[1];
-        var bTime = b[0] * 60 + b[1];
-
+        var aTime = parseInt(a[0] * 60 + a[1]);
+        var bTime = parseInt(b[0] * 60 + b[1]);
         if (aTime < bTime) {
           return 1;
         } else if (aTime > bTime) {
