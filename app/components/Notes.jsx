@@ -15,7 +15,7 @@ export class Notes extends React.Component {
         // );
         return notes.map((note) => {
           return (
-            <div key={note.id} className="data-cell">
+            <div key={note.id} className="data-cell notes">
               <div dangerouslySetInnerHTML={{ __html: note.detail }}></div>
             </div>
           );
