@@ -16,7 +16,7 @@ export class Achievement extends React.Component {
     var renderAchievements = () => {
       if (achievements.length === 0) {
         return (
-          <p className="container__message">Loading.....</p>
+          <p className="container__message">Loading....</p>
         );
       }
 
