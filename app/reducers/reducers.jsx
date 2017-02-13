@@ -11,6 +11,17 @@ export var playersReducer = (state = [], action) => {
   }
 };
 
+export var achievementsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_ACHIEVEMENTS':
+      return [
+        ...action.achievements.achievements,
+      ];
+    default:
+      return state;
+  }
+};
+
 export var notesReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_NOTES':

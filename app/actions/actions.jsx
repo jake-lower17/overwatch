@@ -1,12 +1,6 @@
 import firebase, { firebaseRef } from 'app/firebase/';
 import moment from 'moment';
-
-export var addPlayers = (player) => {
-  return {
-    type: 'ADD_PLAYERS',
-    player: player,
-  };
-};
+import Filter from 'Filter';
 
 export var addNotes = (note) => {
   return {
@@ -19,6 +13,13 @@ export var setSortPlayers = (sort) => {
   return {
     type: 'SORT_PLAYERS',
     sort: sort,
+  };
+};
+
+export var addPlayers = (player) => {
+  return {
+    type: 'ADD_PLAYERS',
+    player: player,
   };
 };
 
@@ -40,6 +41,25 @@ export var startAddPlayers = () => {
       console.log('got database ', player);
     }, (e) => {
       console.log('unable to fetch data', e);
+    });
+  };
+};
+
+export var addAchievements = (achievements) => {
+  return {
+    type: 'ADD_ACHIEVEMENTS',
+    achievements: achievements,
+  };
+};
+
+export var startAddAchievements = (psn) => {
+  return (dispatch, getState) => {
+
+    return Filter.getAchievements('snake187eh').then(function (res) {
+      dispatch(addAchievements(res[0]));
+      console.log('GOT ACH!');
+    }, function (e) {
+      console.log('unable to fetch Achievements', e);
     });
   };
 };

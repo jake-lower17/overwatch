@@ -1,3 +1,5 @@
+var axios = require('axios');
+
 module.exports = {
   filterPlayers: function (players, type = 'score') {
     var filteredPlayers = players;
@@ -114,5 +116,23 @@ module.exports = {
     });
 
     return filteredPlayers;
+  },
+
+  //Get basic stats
+  getAchievements: function (psn) {
+    var requestUrl = `https://api.lootbox.eu/psn/us/${psn}/achievements`;
+    return axios.get(requestUrl).then(function (res) {
+      if (res.data.error) {
+        throw new Error(res.data.error);
+      }else {
+        console.log('Achievement Call');
+        return [res.data];
+      }
+    },
+
+    function (res) {
+      throw new Error('Data error player data.');
+    });
+
   },
 };

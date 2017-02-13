@@ -1,13 +1,14 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import { playersReducer, sortReducer, notesReducer } from 'reducers';
+import { playersReducer, sortReducer, notesReducer, achievementsReducer } from 'reducers';
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     players: playersReducer,
     sort: sortReducer,
-    notes: notesReducer
+    notes: notesReducer,
+    achievements: achievementsReducer
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(
