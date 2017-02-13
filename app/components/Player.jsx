@@ -10,7 +10,7 @@ export class Player extends React.Component {
     var diffPercent = ((won / (lost + won)) * 100).toFixed(2);
     var formatedTime = moment.unix(time).format('MM/DD/YY h:mm a');
     return (
-      <div className="player">
+      <div className="data-cell">
         <div className="psn_holder">
           <p className="psn">{id}</p>
           <p className="player__subtext">{formatedTime}</p>

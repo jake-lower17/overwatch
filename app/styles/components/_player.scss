@@ -1,17 +1,4 @@
-.player {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  transition: background .3s ease;
-  border: 1px solid #eee;
-  margin-bottom: 10px;
-  background-color: #fff;
-   border-radius: 25px;
 
-  p, input {
-    margin: 0;
-  }
-}
 
 .datacell {
   &:hover {
@@ -20,11 +7,11 @@
 }
 
 .player__subtext {
-  color: #999;
+  color: $grey;
 }
 
 .psn {
-  color: #333333;
+  color: $charcoal;
   font-size: 1.5rem;
 }
 .stat_header {
@@ -36,7 +23,7 @@
   padding: 0;
   width: 50px;
   height: 50px;
-  border: 1px solid $grey;
+  border: 1px solid $light-grey-border;
 }
 .player_right {
   margin-left: auto;
@@ -58,11 +45,5 @@
 
   &:hover {
     color: #000;
-  }
-}
-.player-completed {
-  p, .todo-subtext {
-    color: $light-color;
-    text-decoration: line-through;
   }
 }
