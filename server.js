@@ -12,7 +12,7 @@ try {
 } catch (e) {
 
 }
-// console.log(process.env.MESSAGE_SENDER);
+
 var config = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
@@ -22,17 +22,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var firebaseRef = firebase.database().ref();
-// firebaseRef.set({
-//   app: {
-//     name: 'Todo App',
-//     version: '1.0.0',
-//   },
-//   isRunning: true,
-//   user: {
-//     name: 'Jake',
-//     age: 27,
-//   },
-// });
+
 var competitiveRef = firebaseRef.child('competitive');
 var notesRef = firebaseRef.child('notes');
 
@@ -61,8 +51,13 @@ function getPlayerDataAdvanced(psn) {
     if (res.data.error) {
       throw new Error(res.data.error);
     }else {
-      //return res.data.main.temp;
-      return [psn, res.data['HealingDone-MostinGame'], res.data['DamageDone-MostinGame'], res.data['Eliminations-MostinGame'], res.data['SoloKills-MostinGame'], res.data['TimeSpentonFire-MostinGame']];
+
+      //MAX in competitive game
+      //return [psn, res.data['HealingDone-MostinGame'], res.data['DamageDone-MostinGame'], res.data['Eliminations-MostinGame'], res.data['SoloKills-MostinGame'], res.data['TimeSpentonFire-MostinGame']];
+
+      //AVG in competitive game
+      return [psn, res.data['HealingDone-Average'], res.data['DamageDone-Average'], res.data['Eliminations-Average'], res.data['SoloKills-Average'], res.data['TimeSpentonFire-Average']];
+
     }
   },
 
