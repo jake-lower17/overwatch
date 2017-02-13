@@ -10,9 +10,14 @@ export class Notes extends React.Component {
           <p className="container__message">Loading Notes...</p>
         );
       }else {
-        return (
-          <div dangerouslySetInnerHTML={{ __html: notes[0].detail }}></div>
-        );
+        // return (
+        //   <div dangerouslySetInnerHTML={{ __html: notes[0].detail }}></div>
+        // );
+        return notes.map((note) => {
+          return (
+            <div key={note.id} dangerouslySetInnerHTML={{ __html: note.detail }}></div>
+          );
+        });
       }
     };
 
