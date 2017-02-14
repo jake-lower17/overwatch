@@ -22,7 +22,7 @@ export class Achievement extends React.Component {
       var classNameAchievement = 'achievement-container';
       if (achievements.length === 0) {
         return (
-          <p className="container__message">Loading.....</p>
+          <p className="container__message">Loading....</p>
         );
       }
 
