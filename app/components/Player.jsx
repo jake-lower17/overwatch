@@ -2,20 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 var actions = require('actions');
+var { Link, IndexLink } = require('react-router');
 
 export class Player extends React.Component {
   render () {
     var { id, score, time, avatar, level, won, lost, healing, dispatch, damage, kills, solo, fire } = this.props;
-
     var diffPercent = ((won / (lost + won)) * 100).toFixed(2);
     var formatedTime = moment.unix(time).format('MM/DD/YY h:mm a');
     return (
       <div className="data-cell">
-        <div className="psn_holder">
+
+        <div className="psn_holder" onClick={(nextState, replace, next) => {
+          // this.props.onToggle(id);
+          dispatch(actions.setPlayerAchievement(id));
+        }}>
+        <Link to="achievements" activeClassName="active">
           <p className="psn">{id}</p>
           <p className="player__subtext">{formatedTime}</p>
+          </Link>
         </div>
-
         <div className="psn_holder2">
 
           <div className="datacell" onClick={() => {

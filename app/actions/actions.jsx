@@ -16,6 +16,13 @@ export var setSortPlayers = (sort) => {
   };
 };
 
+export var setPlayerAchievement = (player) => {
+  return {
+    type: 'SET_PLAYER_ACHIEVEMENT',
+    player: player,
+  };
+};
+
 export var addPlayers = (player) => {
   return {
     type: 'ADD_PLAYERS',
@@ -52,10 +59,16 @@ export var addAchievements = (achievements) => {
   };
 };
 
+export var removeAchievements = () => {
+  return {
+    type: 'REMOVE_ACHIEVEMENTS',
+  };
+};
+
 export var startAddAchievements = (psn) => {
   return (dispatch, getState) => {
 
-    return Filter.getAchievements('snake187eh').then(function (res) {
+    return Filter.getAchievements(psn).then(function (res) {
       dispatch(addAchievements(res[0]));
       console.log('GOT ACH!');
     }, function (e) {

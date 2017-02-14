@@ -2,11 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 var actions = require('actions');
 
+
 export class Achievement extends React.Component {
 
   componentDidMount () {
-    var { dispatch } = this.props;
-    dispatch(actions.startAddAchievements('snake187eh'));
+    var { dispatch, player } = this.props;
+    if (typeof player != 'undefined'){
+      dispatch(actions.startAddAchievements(player));
+    }
+  }
+
+  componentWillUnmount () {
+    var { dispatch, player } = this.props;
+    dispatch(actions.removeAchievements());
   }
 
   decodeHtml (html) {
@@ -17,22 +25,25 @@ export class Achievement extends React.Component {
 
   render () {
 
-    var { achievements } = this.props;
+    var { achievements, player } = this.props;
     var renderAchievements = () => {
       var classNameAchievement = 'achievement-container';
-      if (achievements.length === 0) {
+      var loadingMessage = `Loading achievements ${player}`;
+      debugger;
+      if (typeof achievements.achievements === 'undefined') {
         return (
-          <p className="container__message">Loading....</p>
+          <p className="container__message">{loadingMessage}</p>
         );
       }
 
-      return achievements.map((achievement) => {
+      return achievements.achievements.map((achievement) => {
 
         if (achievement.finished) {
           classNameAchievement = `${classNameAchievement} finished-achievement`;
         }else {
           classNameAchievement = 'achievement-container';
         }
+
         var titleNew = this.decodeHtml(achievement.name);
         var descriptionNew = this.decodeHtml(achievement.description);
         return (
@@ -45,9 +56,28 @@ export class Achievement extends React.Component {
       });
     };
 
+    var renderHeader = () => {
+      var classNameAchievement = 'achievement-container';
+      var loadingMessage = `Loading achievements ${player}`;
+      debugger;
+      if (typeof achievements.achievements !== 'undefined') {
+        return (
+          <div className="achievements">
+            <p className="psn">{player}</p>
+            <p className="stat_header">{achievements.finishedAchievements}</p>
+          </div>
+        );
+      }else {
+        return (' ');
+      }
+    };
+
     return (
-      <div className="achievements">
-        {renderAchievements()}
+      <div>
+        {renderHeader()}
+        <div className="achievements">
+          {renderAchievements()}
+        </div>
       </div>
     );
   }
@@ -56,7 +86,8 @@ export class Achievement extends React.Component {
 export default connect(
   (state) => {
     return {
-      achievements: state.achievements
+      achievements: state.achievements,
+      player: state.player
     };
   }
 )(Achievement);
