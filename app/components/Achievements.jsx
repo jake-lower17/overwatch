@@ -5,17 +5,17 @@ var actions = require('actions');
 
 export class Achievement extends React.Component {
 
-  componentDidMount () {
-    var { dispatch, player } = this.props;
-    if (typeof player != 'undefined'){
-      dispatch(actions.startAddAchievements(player));
-    }
-  }
-
-  componentWillUnmount () {
-    var { dispatch, player } = this.props;
-    dispatch(actions.removeAchievements());
-  }
+  // componentDidMount () {
+  //   var { dispatch, player } = this.props;
+  //   if (typeof player != 'undefined'){
+  //     dispatch(actions.startAddAchievements(player));
+  //   }
+  // }
+  //
+  // componentWillUnmount () {
+  //   var { dispatch, player } = this.props;
+  //   dispatch(actions.removeAchievements());
+  // }
 
   decodeHtml (html) {
     var txt = document.createElement('textarea');
@@ -23,21 +23,22 @@ export class Achievement extends React.Component {
     return txt.value;
   }
 
+  getPlayer (players, player) {
+    return players.find(function (item) {
+      return item.id = player;
+    });
+  }
+
   render () {
 
-    var { achievements, player } = this.props;
+    var { achievements, player, players } = this.props;
+
+    var playerHolder = this.getPlayer(players, player);
+
     var renderAchievements = () => {
       var classNameAchievement = 'achievement-container';
       var loadingMessage = `Loading achievements ${player}`;
-      debugger;
-      if (typeof achievements.achievements === 'undefined') {
-        return (
-          <p className="container__message">{loadingMessage}</p>
-        );
-      }
-
-      return achievements.achievements.map((achievement) => {
-
+      return playerHolder.achievements.achievements.map((achievement) => {
         if (achievement.finished) {
           classNameAchievement = `${classNameAchievement} finished-achievement`;
         }else {
@@ -59,17 +60,11 @@ export class Achievement extends React.Component {
     var renderHeader = () => {
       var classNameAchievement = 'achievement-container';
       var loadingMessage = `Loading achievements ${player}`;
-      debugger;
-      if (typeof achievements.achievements !== 'undefined') {
         return (
           <div className="achievements">
             <p className="psn">{player}</p>
-            <p className="stat_header">{achievements.finishedAchievements}</p>
           </div>
         );
-      }else {
-        return (' ');
-      }
     };
 
     return (
@@ -86,8 +81,8 @@ export class Achievement extends React.Component {
 export default connect(
   (state) => {
     return {
-      achievements: state.achievements,
-      player: state.player
+      player: state.player,
+      players: state.players
     };
   }
 )(Achievement);
