@@ -12,8 +12,9 @@ callData(competitiveRef);
 function callData(competitiveRef) {
   var playerList = ['UnsocialRock', 'snake187eh', 'Pumkinhead89', 'lower_44', 'Cwally7', 'shiboodles', 'zlower7'];
 
+  //Players Basics
   for (i = 0; i < playerList.length; i++) {
-    score = api.getPlayerData(playerList[i]).then(function (score) {
+    api.getPlayerData(playerList[i]).then(function (score) {
       PlayerRef = competitiveRef.child(score[0]);
       console.log(score[0], ' ', score[1]);
       if (!score[1]) {
@@ -28,14 +29,14 @@ function callData(competitiveRef) {
         lost: parseInt(score[5]),
         time: moment().unix(),
       });
-      return score;
     }, function (e) {
       console.log(e);
     });
   }
 
+  //Player Advanced
   for (i = 0; i < playerList.length; i++) {
-    score = api.getPlayerDataAdvanced(playerList[i]).then(function (score) {
+    api.getPlayerDataAdvanced(playerList[i]).then(function (score) {
       PlayerRef = competitiveRef.child(score[0]);
       console.log(score[0], ' ', score[1]);
       if (!score[1]) {
@@ -49,7 +50,19 @@ function callData(competitiveRef) {
         solo: parseInt(score[4].replace(',','')),
         fire: score[5],
       });
-      return score;
+    }, function (e) {
+      console.log(e);
+    });
+  }
+
+  //Get Achievements
+  for (i = 0; i < playerList.length; i++) {
+    api.getAchievements(playerList[i]).then(function (res) {
+      PlayerRef = competitiveRef.child(res[0]);
+
+      PlayerRef.update({
+        achievements: res[1]
+      });
     }, function (e) {
       console.log(e);
     });
@@ -57,11 +70,10 @@ function callData(competitiveRef) {
 };
 
 function callNotes(notesRef) {
-  score = api.getPatchNotes().then(function (notes) {
+  api.getPatchNotes().then(function (notes) {
     //console.log(notes);
 
     notesRef.set(notes);
-    return notes;
   }, function (e) {
     console.log(e);
   });

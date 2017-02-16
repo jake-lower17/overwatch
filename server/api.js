@@ -13,6 +13,9 @@ module.exports.getPlayerData = function (psn) {
   },
 
   function (res) {
+    console.log('_____-----_____------_____');
+    console.log(res);
+    console.log('_____-----_____------_____');
     throw new Error('Data error player data.');
   });
 
@@ -37,6 +40,22 @@ module.exports.getPlayerDataAdvanced = function (psn) {
 
   function (res) {
     throw new Error('Data error player data advanced.');
+  });
+
+};
+
+module.exports.getAchievements = function (psn) {
+  var requestUrl = `https://api.lootbox.eu/psn/us/${psn}/achievements`;
+  return axios.get(requestUrl).then(function (res) {
+    if (res.data.error) {
+      throw new Error(res.data.error);
+    }else {
+      return [psn, res.data];
+    }
+  },
+
+  function (res) {
+    throw new Error('Data error player data Achievements.');
   });
 
 };
