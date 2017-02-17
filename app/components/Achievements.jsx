@@ -25,16 +25,14 @@ export class Achievement extends React.Component {
 
   getPlayer (players, player) {
     return players.find(function (item) {
-      return item.id = player;
+      return item.id === player;
     });
   }
 
   render () {
 
     var { achievements, player, players } = this.props;
-
     var playerHolder = this.getPlayer(players, player);
-
     var renderAchievements = () => {
       var classNameAchievement = 'achievement-container';
       var loadingMessage = `Loading achievements ${player}`;
@@ -61,8 +59,11 @@ export class Achievement extends React.Component {
       var classNameAchievement = 'achievement-container';
       var loadingMessage = `Loading achievements ${player}`;
         return (
-          <div className="achievements">
-            <p className="psn">{player}</p>
+          <div className="data-cell">
+              <p className="psn"><span className="psn">{player}:</span> <span className="stat_header">{playerHolder.achievements.finishedAchievements}</span></p>
+              <div className="player_right">
+                <img className="psn_img" src={playerHolder.avatar}/>
+              </div>
           </div>
         );
     };
