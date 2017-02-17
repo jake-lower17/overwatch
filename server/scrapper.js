@@ -10,63 +10,82 @@ callData(competitiveRef);
 
 //Players to search
 function callData(competitiveRef) {
-  var playerList = ['UnsocialRock', 'snake187eh', 'Pumkinhead89', 'lower_44', 'Cwally7', 'shiboodles', 'zlower7'];
+  //var playerList = ['UnsocialRock', 'snake187eh', 'Pumkinhead89', 'lower_44', 'Cwally7', 'shiboodles', 'zlower7'];
 
-  //Players Basics
-  for (i = 0; i < playerList.length; i++) {
-    api.getPlayerData(playerList[i]).then(function (score) {
-      PlayerRef = competitiveRef.child(score[0]);
-      console.log(score[0], ' ', score[1]);
-      if (!score[1]) {
-        score[1] = 0;
-      };
+  var playerList = competitiveRef.once('value').then((snapshot) => {
+    var player = snapshot.val() || {};
+    var parsedPlayers = [];
 
-      PlayerRef.update({
-        score: parseInt(score[1]),
-        avatar: score[2],
-        level: parseInt(score[3]),
-        won: parseInt(score[4]),
-        lost: parseInt(score[5]),
-        time: moment().unix(),
-      });
-    }, function (e) {
-      console.log(e);
+    Object.keys(player).forEach((todoID) => {
+      parsedPlayers.push(todoID);
     });
-  }
+    console.log(parsedPlayers);
+    console.log(parsedPlayers.length);
 
-  //Player Advanced
-  for (i = 0; i < playerList.length; i++) {
-    api.getPlayerDataAdvanced(playerList[i]).then(function (score) {
-      PlayerRef = competitiveRef.child(score[0]);
-      console.log(score[0], ' ', score[1]);
-      if (!score[1]) {
-        score[1] = 0;
-      };
 
-      PlayerRef.update({
-        healing: parseInt(score[1].replace(',','')),
-        damage: parseInt(score[2].replace(',','')),
-        kills: parseInt(score[3].replace(',','')),
-        solo: parseInt(score[4].replace(',','')),
-        fire: score[5],
+    //Get stats after promise
+    //Players Basics
+    for (i = 0; i < parsedPlayers.length; i++) {
+      api.getPlayerData(parsedPlayers[i]).then(function (score) {
+        PlayerRef = competitiveRef.child(score[0]);
+        console.log(score[0], ' ', score[1]);
+        if (!score[1]) {
+          score[1] = 0;
+        };
+
+        PlayerRef.update({
+          score: parseInt(score[1]),
+          avatar: score[2],
+          level: parseInt(score[3]),
+          won: parseInt(score[4]),
+          lost: parseInt(score[5]),
+          time: moment().unix(),
+        });
+      }, function (e) {
+        console.log(e);
       });
-    }, function (e) {
-      console.log(e);
-    });
-  }
+    }
 
-  //Get Achievements
-  for (i = 0; i < playerList.length; i++) {
-    api.getAchievements(playerList[i]).then(function (res) {
-      PlayerRef = competitiveRef.child(res[0]);
+    //Player Advanced
+    for (i = 0; i < parsedPlayers.length; i++) {
+      api.getPlayerDataAdvanced(parsedPlayers[i]).then(function (score) {
+        PlayerRef = competitiveRef.child(score[0]);
+        console.log(score[0], ' ', score[1]);
+        if (!score[1]) {
+          score[1] = 0;
+        };
 
-      PlayerRef.update({
-        achievements: res[1]
+        PlayerRef.update({
+          healing: parseInt(score[1].replace(',','')),
+          damage: parseInt(score[2].replace(',','')),
+          kills: parseInt(score[3].replace(',','')),
+          solo: parseInt(score[4].replace(',','')),
+          fire: score[5],
+        });
+      }, function (e) {
+        console.log(e);
       });
-    }, function (e) {
-      console.log(e);
-    });
-  }
+    }
+
+    //Get Achievements
+    for (i = 0; i < parsedPlayers.length; i++) {
+      api.getAchievements(parsedPlayers[i]).then(function (res) {
+        PlayerRef = competitiveRef.child(res[0]);
+
+        PlayerRef.update({
+          achievements: res[1]
+        });
+      }, function (e) {
+        console.log(e);
+      });
+    }
+
+
+
+
+  }, (e) => {
+    //console.log('unable to fetch data', e);
+  });
 };
 
 function callNotes(notesRef) {

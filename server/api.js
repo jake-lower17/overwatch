@@ -10,12 +10,10 @@ module.exports.getPlayerData = function (psn) {
       //return res.data.main.temp;
       return [psn, res.data.data.competitive.rank, res.data.data.avatar, res.data.data.level, res.data.data.games.competitive.wins, res.data.data.games.competitive.lost];
     }
+    console.log(requestUrl);
   },
 
   function (res) {
-    console.log('_____-----_____------_____');
-    console.log(res);
-    console.log('_____-----_____------_____');
     throw new Error('Data error player data.');
   });
 

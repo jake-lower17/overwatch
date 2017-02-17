@@ -5,17 +5,13 @@ var actions = require('actions');
 
 export class Achievement extends React.Component {
 
-  // componentDidMount () {
-  //   var { dispatch, player } = this.props;
-  //   if (typeof player != 'undefined'){
-  //     dispatch(actions.startAddAchievements(player));
-  //   }
-  // }
-  //
-  // componentWillUnmount () {
-  //   var { dispatch, player } = this.props;
-  //   dispatch(actions.removeAchievements());
-  // }
+  componentDidMount() {
+
+    const { context } = this;
+
+    this.historyUnlisten = context.history.listen(() => this.scrollToTop());
+
+  }
 
   decodeHtml (html) {
     var txt = document.createElement('textarea');

@@ -3,6 +3,7 @@ import Nav from 'Nav';
 import PlayerList from 'PlayerList';
 
 export class OverwatchApp extends React.Component {
+
   render () {
     return (
       <div>
