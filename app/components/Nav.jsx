@@ -29,6 +29,11 @@ var Nav = React.createClass({
                 Patch Notes
               </Link>
             </li>
+            <li>
+              <Link to="addPlayer" activeClassName="active" activeStyle={{ fontWeight: 'bold' }}>
+                Add Player
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="top-bar-right">

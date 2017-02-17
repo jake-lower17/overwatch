@@ -4,6 +4,7 @@ import Notes from 'Notes';
 import OverwatchApp from 'OverwatchApp';
 import PlayerList from 'PlayerList';
 import Achievements from 'Achievements';
+import AddPlayer from 'AddPlayer';
 
 export default (
   <Router>
@@ -11,6 +12,7 @@ export default (
       <Route path="/" component={OverwatchApp}>
         <Route path="notes" component={Notes}/>
         <Route path="achievements" component={Achievements}/>
+        <Route path="addPlayer" component={AddPlayer}/>
         <IndexRoute component={PlayerList}/>
       </Route>
     </Router>
